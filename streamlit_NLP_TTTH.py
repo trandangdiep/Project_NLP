@@ -349,21 +349,25 @@ elif choice == 'Product Search':
                     c = 'Negative'
                 st.write("### WordCloud for ",c)
                 product_reviews = selected_product[(selected_product[f'{a}'] != 0) & (selected_product[f'{b}'] == 0)]
-                text = ' '.join(product_reviews['noi_dung_binh_luan'].astype(str))
-                # Lấy 10 từ phổ biến nhất
-                words = ' '.join(product_reviews['noi_dung_binh_luan'].astype(str)).split()
-                word_freq = Counter(words)
-                common_words = pd.DataFrame(word_freq.most_common(40), columns=['Word', 'Frequency'])
-                st.dataframe(common_words.head(10))
-                wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
-                # Vẽ biểu đồ
-                fig, ax = plt.subplots(figsize=(10, 5))
-                ax.imshow(wordcloud, interpolation="bilinear")
-                ax.set_title(f"WordCloud for {c}")
-                ax.axis("off")
+                if (product_reviews.count() > 0) :
+                    text = ' '.join(product_reviews['noi_dung_binh_luan'].astype(str))
+                    # Lấy 10 từ phổ biến nhất
+                    words = ' '.join(product_reviews['noi_dung_binh_luan'].astype(str)).split()
+                    word_freq = Counter(words)
+                    common_words = pd.DataFrame(word_freq.most_common(40), columns=['Word', 'Frequency'])
+                    st.dataframe(common_words.head(10))
+                    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+                    # Vẽ biểu đồ
+                    fig, ax = plt.subplots(figsize=(10, 5))
+                    ax.imshow(wordcloud, interpolation="bilinear")
+                    ax.set_title(f"WordCloud for {c}")
+                    ax.axis("off")
+                    # Hiển thị WordCloud trên Streamlit
+                    st.pyplot(fig)
+                else :
+                    st.write("### không có từ ",c)
 
-                # Hiển thị WordCloud trên Streamlit
-                st.pyplot(fig)
+
 
             # Trực quan hóa bình luận tích cực và tiêu cực
             st.write("### Trực quan hóa bình luận tích cực và tiêu cực")
