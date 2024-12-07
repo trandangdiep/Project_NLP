@@ -349,7 +349,7 @@ elif choice == 'Product Search':
                     c = 'Negative'
                 st.write("### WordCloud for ",c)
                 product_reviews = selected_product[(selected_product[f'{a}'] != 0) & (selected_product[f'{b}'] == 0)]
-                if (product_reviews.count() > 0) :
+                if len(product_reviews) > 0 :
                     text = ' '.join(product_reviews['noi_dung_binh_luan'].astype(str))
                     # Lấy 10 từ phổ biến nhất
                     words = ' '.join(product_reviews['noi_dung_binh_luan'].astype(str)).split()
