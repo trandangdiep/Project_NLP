@@ -16,7 +16,7 @@ text_processor = TextProcessor()
 data = pd.read_csv('data/output.csv',encoding='utf-8')
 data1 = pd.read_csv('data/Danh_gia.csv',encoding='utf-8')
 merged_data = pd.read_csv('data/merged_data.csv',encoding='utf-8')
-data = data.dropna()
+merged_data = merged_data.dropna()
 
 # Load files
 #LOAD POSITIVE_VN
